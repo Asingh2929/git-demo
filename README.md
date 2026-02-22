@@ -1,38 +1,22 @@
-📘 Terraform AWS Infrastructure Project 
-📌 Project Overview
-
-This project demonstrates how to provision and manage AWS infrastructure using Terraform (Infrastructure as Code).
-
-Using Terraform, we deploy:
-
-Two Amazon EC2 instances
-
-Apache Web Server installation via User Data scripts
-
-Dynamic HTML pages displaying the Instance ID
-
-Configurable infrastructure using variables
-
-Remote state management (backend configuration)
-
-The goal of this project is to showcase practical DevOps skills including automation, cloud provisioning, and infrastructure management.
-
-🏗 Architecture Overview
-
-<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/53e84422-8c64-4e57-94c8-c5ce4b1b9172" />
-
-Workflow:
-
-Terraform connects to AWS.
-
-Infrastructure resources are provisioned.
-
-EC2 instances execute User Data scripts on boot.
-
-Apache Web Server is installed automatically.
-
-A dynamic HTML page is generated and served.
-
+🚀 Terraform AWS EC2 Infrastructure Project
+📌 Overview
+This project provisions AWS infrastructure using Terraform (Infrastructure as Code) to automatically deploy two EC2 instances running Apache Web Server.
+Each instance:
+•	Installs Apache during boot using a User Data script
+•	Retrieves its own Instance ID dynamically
+•	Serves a custom HTML page displaying server details
+The infrastructure is modular, reusable, and fully automated.
+________________________________________
+🏗 Architecture
+<img width="975" height="545" alt="image" src="https://github.com/user-attachments/assets/1a2db3f3-82d3-4e9b-b2e7-251c9f5db940" />
+Deployment Flow
+1.	Terraform authenticates with AWS.
+2.	EC2 instances are provisioned.
+3.	User Data scripts execute during boot.
+4.	Apache Web Server is installed.
+5.	Dynamic HTML content is generated.
+6.	Public IP addresses are displayed as Terraform outputs.
+________________________________________
 📂 Project Structure
 .
 ├── backend.tf
@@ -43,213 +27,118 @@ A dynamic HTML page is generated and served.
 ├── userdata.sh
 ├── userdata1.sh
 ├── output.tf
-📄 File-by-File Explanation
-1️⃣ backend.tf
-
-Configures the Terraform backend for storing the state file remotely (e.g., S3).
-
-Purpose:
-
-Centralized state management
-
-Team collaboration support
-
-State locking (if DynamoDB is configured)
-
-2️⃣ provider.tf
-
-Defines the AWS provider configuration.
-
-Example responsibilities:
-
-AWS region configuration
-
-Provider version control
-
-Purpose:
-Allows Terraform to communicate with AWS APIs.
-
-3️⃣ variables.tf
-
-Declares input variables used throughout the project.
-
-Example variables:
-
-region
-
-instance_type
-
-key_name
-
-Purpose:
-Improves reusability and modularity of the configuration.
-
-4️⃣ terraform.tfvars
-
-Provides actual values for variables defined in variables.tf.
-
-Example:
-
+File	Description
+backend.tf	Configures remote backend for Terraform state
+provider.tf	Defines AWS provider configuration
+variables.tf	Declares input variables
+terraform.tfvars	Provides variable values
+main.tf	Core infrastructure definition
+userdata.sh	Bootstrap script for Server 1
+userdata1.sh	Bootstrap script for Server 2
+output.tf	Outputs public IP/DNS information
+________________________________________
+⚙️ Technologies Used
+•	Terraform
+•	Amazon Web Services (AWS)
+•	Amazon EC2
+•	Apache Web Server
+•	Bash Scripting
+•	Infrastructure as Code (IaC)
+________________________________________
+📋 Prerequisites
+Before deployment, ensure the following:
+•	AWS Account
+•	IAM User with EC2 permissions
+•	AWS CLI installed and configured
+•	Terraform installed (v1.x recommended)
+•	Existing EC2 Key Pair in AWS
+________________________________________
+🔧 Configuration
+Update the terraform.tfvars file with appropriate values:
 region        = "ap-south-1"
 instance_type = "t2.micro"
-
-Purpose:
-Separates configuration logic from environment-specific values.
-
-5️⃣ main.tf
-
-Core infrastructure definition file.
-
-Typically includes:
-
-EC2 instances
-
-Security Groups
-
-Networking components (if defined)
-
-Purpose:
-Defines the AWS resources to be provisioned.
-
-6️⃣ userdata.sh (Server 1 Script)
-
-📄 Reference: 
-
-userdata
-
-This script executes automatically during EC2 instance boot.
-
-Responsibilities:
-
-Updates system packages
-
-Installs Apache Web Server
-
-Retrieves the Instance ID from metadata
-
-Generates a dynamic HTML page
-
-Starts and enables Apache service
-
-The webpage displays:
-
-Server Name (Server 1)
-
-Instance ID
-
-Custom welcome message
-
-7️⃣ userdata1.sh (Server 2 Script)
-
-📄 Reference: 
-
-userdata1
-
-Similar to userdata.sh with slight content variations.
-
-Responsibilities:
-
-Installs Apache
-
-Retrieves Instance ID
-
-Generates a dynamic HTML page
-
-The webpage displays:
-
-Server Name (Server 2)
-
-Instance ID
-
-Custom welcome message
-
-8️⃣ output.tf
-
-Defines Terraform outputs such as:
-
-Public IP address
-
-Public DNS
-
-Purpose:
-Displays important resource information after deployment.
-
-🚀 Deployment Instructions
-🔹 Step 1: Configure AWS Credentials
+key_name      = "your-key-name"
+________________________________________
+🚀 Deployment Steps
+1️⃣ Configure AWS Credentials
 aws configure
-
-Provide:
-
-Access Key
-
-Secret Key
-
-Default Region
-
-Output Format
-
-🔹 Step 2: Initialize Terraform
+Enter:
+•	AWS Access Key
+•	AWS Secret Key
+•	Default region
+•	Output format
+________________________________________
+2️⃣ Initialize Terraform
 terraform init
-
-This downloads required providers and initializes the backend.
-
-🔹 Step 3: Validate Configuration
+Initializes provider plugins and backend configuration.
+________________________________________
+3️⃣ Validate Configuration
 terraform validate
-
-Ensures syntax correctness.
-
-🔹 Step 4: Review Execution Plan
+Ensures configuration syntax is correct.
+________________________________________
+4️⃣ Review Execution Plan
 terraform plan
-
-Shows the infrastructure changes before applying them.
-
-🔹 Step 5: Apply Configuration
-terraform apply
-
-Confirm by typing:
-
-yes
-
+Shows the resources that will be created.
+________________________________________
+5️⃣ Apply Infrastructure
+terraform apply –auto-
 Terraform will provision the infrastructure.
-
+________________________________________
 🌐 Access the Application
-
-After deployment:
-
-Retrieve the Public IP from the output.
-
-Open in your browser:
-
+After successful deployment:
+1.	Retrieve the Public IP from Terraform output.
+2.	Open in your browser:
 http://<public-ip>
-
-You should see the Apache web page displaying:
-
-Server identification
-
-Instance ID
-
-Welcome message
-
-🛠 Technologies Used
-
-Terraform
-
-Amazon Web Services (AWS)
-
-Amazon EC2
-
-Apache Web Server
-
-Bash Scripting
-
-Infrastructure as Code (IaC)
-
-🧹 Destroying Infrastructure
-
-To remove all resources:
-
-terraform destroy --auto-approve
-
+You will see:
+•	Server Name (Server 1 or Server 2)
+•	Instance ID
+•	Custom welcome message
+________________________________________
+🔍 User Data Script Functionality
+The User Data scripts:
+•	Update system packages
+•	Install Apache Web Server
+•	Retrieve EC2 Instance ID from metadata
+•	Generate a dynamic HTML file
+•	Start and enable Apache service
+Server 1 Script
+📄 Reference: 
+userdata
+Server 2 Script
+📄 Reference: 
+userdata1
+________________________________________
+🔐 Security Considerations
+•	Security Group allows HTTP (port 80)
+•	SSH access should be restricted to trusted IP ranges
+•	Avoid hardcoding AWS credentials
+•	Use IAM roles where possible
+•	Store Terraform state securely (S3 + DynamoDB recommended)
+________________________________________
+🧹 Destroy Infrastructure
+To delete all created resources:
+terraform destroy
 Confirm with:
-
-This will safely delete all provisioned resources.
+yes
+________________________________________
+🔮 Future Enhancements
+•	Add Application Load Balancer (ALB)
+•	Implement Auto Scaling Group
+•	Enable HTTPS using AWS ACM
+•	Modularize Terraform configuration
+•	Integrate CI/CD pipeline
+•	Add monitoring with CloudWatch
+________________________________________
+🎯 Key DevOps Concepts Demonstrated
+•	Infrastructure as Code (IaC)
+•	Automated Provisioning
+•	Cloud Resource Lifecycle Management
+•	Bootstrapping with User Data
+•	Reusable & Parameterized Configuration
+•	Remote State Management
+________________________________________
+👨‍💻 Author
+Your Name
+DevOps Engineer
+•	GitHub: https://github.com/anand9340
+•	LinkedIn: https://linkedin.com/in/anandsingh93
