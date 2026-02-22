@@ -1,8 +1,8 @@
 🚀 Terraform AWS EC2 Infrastructure Project
-<p align="center"> Provisioning AWS Infrastructure using Terraform (Infrastructure as Code) </p>
+<p align="center"> <img src="https://img.shields.io/badge/Terraform-v1.x-blue?style=for-the-badge&logo=terraform"> <img src="https://img.shields.io/badge/AWS-EC2-orange?style=for-the-badge&logo=amazonaws"> <img src="https://img.shields.io/badge/Infrastructure-as--Code-purple?style=for-the-badge"> <img src="https://img.shields.io/badge/Status-Active-success?style=for-the-badge"> </p>
 📌 Project Overview
 
-This project demonstrates how to provision AWS infrastructure using Terraform to automatically deploy two EC2 instances running Apache Web Server.
+This project demonstrates how to provision AWS infrastructure using Terraform (Infrastructure as Code) to automatically deploy two EC2 instances running Apache Web Server.
 
 Each instance:
 
@@ -12,11 +12,11 @@ Each instance:
 
 ✅ Serves a custom HTML page displaying server details
 
-The infrastructure is modular, reusable, and fully automated following Infrastructure as Code (IaC) principles.
+The infrastructure is fully automated, modular, and reusable.
 
 🏗 Architecture Overview
+Terraform  →  AWS  →  EC2  →  User Data Script  →  Apache  →  Web Page
 🔄 Deployment Flow
-Terraform → AWS → EC2 Instance → User Data Script → Apache → Web Page
 
 Terraform authenticates with AWS
 
@@ -24,7 +24,7 @@ EC2 instances are provisioned
 
 User Data scripts execute during boot
 
-Apache Web Server is installed
+Apache Web Server installs automatically
 
 Dynamic HTML content is generated
 
@@ -49,7 +49,7 @@ main.tf	Core infrastructure definition
 userdata.sh	Bootstrap script for Server 1
 userdata1.sh	Bootstrap script for Server 2
 output.tf	Outputs public IP/DNS information
-⚙️ Technologies Used
+⚙️ Tech Stack
 
 🏗 Terraform
 
@@ -65,7 +65,7 @@ output.tf	Outputs public IP/DNS information
 
 📋 Prerequisites
 
-Ensure the following before deployment:
+Before deployment, ensure:
 
 AWS Account
 
@@ -75,108 +75,78 @@ AWS CLI installed and configured
 
 Terraform installed (v1.x recommended)
 
-Existing EC2 Key Pair in AWS
+Existing EC2 Key Pair
 
 🔧 Configuration
 
-Update the terraform.tfvars file:
+Update terraform.tfvars:
 
 region        = "ap-south-1"
 instance_type = "t2.micro"
 key_name      = "your-key-name"
 🚀 Deployment Guide
-1️⃣ Configure AWS Credentials
+1️⃣ Configure AWS
 aws configure
-
-Provide:
-
-AWS Access Key
-
-AWS Secret Key
-
-Default Region
-
-Output Format
-
 2️⃣ Initialize Terraform
 terraform init
-3️⃣ Validate Configuration
+3️⃣ Validate
 terraform validate
-4️⃣ Review Execution Plan
+4️⃣ Plan
 terraform plan
-5️⃣ Apply Infrastructure
+5️⃣ Apply
 terraform apply
 
-Type:
-
-yes
-
-Or run:
+Or:
 
 terraform apply --auto-approve
 🌐 Access the Application
 
-After successful deployment:
-
-Retrieve the Public IP from Terraform output
-
-Open in your browser:
+After deployment:
 
 http://<public-ip>
 
 You will see:
 
-🖥 Server Name (Server 1 or Server 2)
+🖥 Server Name
 
 🆔 Instance ID
 
-🎉 Custom welcome message
+🎉 Welcome Message
 
-🔐 Security Considerations
+🔐 Security Best Practices
 
-Security Group allows HTTP (port 80)
-
-SSH access should be restricted to trusted IP ranges
+Restrict SSH to trusted IP ranges
 
 Avoid hardcoding AWS credentials
 
-Use IAM roles where possible
+Use IAM roles instead of access keys
 
 Store Terraform state securely (S3 + DynamoDB recommended)
 
 🧹 Destroy Infrastructure
 terraform destroy
+🔮 Future Improvements
 
-Confirm with:
+🔁 Application Load Balancer (ALB)
 
-yes
-🔮 Future Enhancements
+📈 Auto Scaling Group
 
-Add Application Load Balancer (ALB)
+🔒 HTTPS using AWS ACM
 
-Implement Auto Scaling Group
+🧩 Modular Terraform structure
 
-Enable HTTPS using AWS ACM
+🚀 CI/CD pipeline integration
 
-Modularize Terraform configuration
-
-Integrate CI/CD pipeline
-
-Add monitoring with CloudWatch
+📊 CloudWatch monitoring
 
 🎯 DevOps Concepts Demonstrated
 
-Infrastructure as Code (IaC)
-
-Automated Cloud Provisioning
-
-Infrastructure Lifecycle Management
-
-EC2 Bootstrapping with User Data
-
-Parameterized & Reusable Configuration
-
-Remote State Management
+✔ Infrastructure as Code
+✔ Automated Provisioning
+✔ Cloud Lifecycle Management
+✔ EC2 Bootstrapping
+✔ Parameterized Configuration
+✔ Remote State Management
 
 👨‍💻 Author
 
