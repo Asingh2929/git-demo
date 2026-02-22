@@ -67,7 +67,7 @@ Enter:
 •	AWS Secret Key
 •	Default region
 •	Output format
-________________________________________
+_______________________________________
 2️⃣ Initialize Terraform
 terraform init
 Initializes provider plugins and backend configuration.
