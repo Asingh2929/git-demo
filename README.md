@@ -248,10 +248,8 @@ Infrastructure as Code (IaC)
 
 To remove all resources:
 
-terraform destroy
+terraform destroy --auto-approve
 
 Confirm with:
-
-yes
 
 This will safely delete all provisioned resources.
