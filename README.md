@@ -1,20 +1,22 @@
 🚀 Terraform AWS EC2 Infrastructure Project
-📌 Overview
+<p align="center"> Provisioning AWS Infrastructure using Terraform (Infrastructure as Code) </p>
+📌 Project Overview
 
-This project provisions AWS infrastructure using Terraform (Infrastructure as Code) to automatically deploy two EC2 instances running Apache Web Server.
+This project demonstrates how to provision AWS infrastructure using Terraform to automatically deploy two EC2 instances running Apache Web Server.
 
 Each instance:
 
-Installs Apache during boot using a User Data script
+✅ Installs Apache during boot using a User Data script
 
-Retrieves its own Instance ID dynamically
+✅ Dynamically retrieves its own Instance ID
 
-Serves a custom HTML page displaying server details
+✅ Serves a custom HTML page displaying server details
 
-The infrastructure is modular, reusable, and fully automated.
+The infrastructure is modular, reusable, and fully automated following Infrastructure as Code (IaC) principles.
 
-🏗 Architecture
-Deployment Flow
+🏗 Architecture Overview
+🔄 Deployment Flow
+Terraform → AWS → EC2 Instance → User Data Script → Apache → Web Page
 
 Terraform authenticates with AWS
 
@@ -38,7 +40,7 @@ Public IP addresses are displayed as Terraform outputs
 ├── userdata.sh
 ├── userdata1.sh
 ├── output.tf
-File	Description
+📄 File	📌 Description
 backend.tf	Configures remote backend for Terraform state
 provider.tf	Defines AWS provider configuration
 variables.tf	Declares input variables
@@ -49,21 +51,21 @@ userdata1.sh	Bootstrap script for Server 2
 output.tf	Outputs public IP/DNS information
 ⚙️ Technologies Used
 
-Terraform
+🏗 Terraform
 
-Amazon Web Services (AWS)
+☁️ Amazon Web Services (AWS)
 
-Amazon EC2
+🖥 Amazon EC2
 
-Apache Web Server
+🌐 Apache Web Server
 
-Bash Scripting
+📜 Bash Scripting
 
-Infrastructure as Code (IaC)
+🔁 Infrastructure as Code (IaC)
 
 📋 Prerequisites
 
-Before deployment, ensure the following:
+Ensure the following before deployment:
 
 AWS Account
 
@@ -82,19 +84,19 @@ Update the terraform.tfvars file:
 region        = "ap-south-1"
 instance_type = "t2.micro"
 key_name      = "your-key-name"
-🚀 Deployment Steps
+🚀 Deployment Guide
 1️⃣ Configure AWS Credentials
 aws configure
 
-Enter:
+Provide:
 
 AWS Access Key
 
 AWS Secret Key
 
-Default region
+Default Region
 
-Output format
+Output Format
 
 2️⃣ Initialize Terraform
 terraform init
@@ -109,14 +111,14 @@ Type:
 
 yes
 
-Or use:
+Or run:
 
 terraform apply --auto-approve
 🌐 Access the Application
 
 After successful deployment:
 
-Retrieve the Public IP from Terraform output.
+Retrieve the Public IP from Terraform output
 
 Open in your browser:
 
@@ -124,11 +126,11 @@ http://<public-ip>
 
 You will see:
 
-Server Name (Server 1 or Server 2)
+🖥 Server Name (Server 1 or Server 2)
 
-Instance ID
+🆔 Instance ID
 
-Custom welcome message
+🎉 Custom welcome message
 
 🔐 Security Considerations
 
@@ -162,17 +164,17 @@ Integrate CI/CD pipeline
 
 Add monitoring with CloudWatch
 
-🎯 Key DevOps Concepts Demonstrated
+🎯 DevOps Concepts Demonstrated
 
 Infrastructure as Code (IaC)
 
-Automated Provisioning
+Automated Cloud Provisioning
 
-Cloud Resource Lifecycle Management
+Infrastructure Lifecycle Management
 
-Bootstrapping with User Data
+EC2 Bootstrapping with User Data
 
-Reusable & Parameterized Configuration
+Parameterized & Reusable Configuration
 
 Remote State Management
 
@@ -181,18 +183,6 @@ Remote State Management
 Anand Singh
 DevOps Engineer
 
-GitHub: https://github.com/anand9340
+🔗 GitHub: https://github.com/anand9340
 
-LinkedIn: https://linkedin.com/in/anandsingh
-
-🎯 Final Advice
-
-Problem content mein nahi tha.
-Problem formatting aur Markdown structure mein tha.
-
-GitHub README =
-✔ Proper headings
-✔ Clean spacing
-✔ Code blocks
-✔ Tables
-✔ Professional tone
+🔗 LinkedIn: https://linkedin.com/in/anandsingh
